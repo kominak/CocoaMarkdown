@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  Array backed stack.
  */
 @interface CMStack : NSObject
-@property (nonatomic, readonly) NSArray *objects;
+@property (nonatomic, readonly) NSArray<id> *objects;
 
 - (void)push:(id)object;
 - (id _Nullable)pop;

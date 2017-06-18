@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class CMAttributeRun;
 
 @interface CMCascadingAttributeStack : NSObject
-@property (nonatomic, readonly) NSDictionary *cascadedAttributes;
+@property (nonatomic, readonly) NSDictionary<NSString *, id> *cascadedAttributes;
 
 - (void)push:(CMAttributeRun *)run;
 - (CMAttributeRun * _Nullable)pop;
