@@ -6,7 +6,9 @@
 //  Copyright (c) 2015 Indragie Karunaratne. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class CMDocument;
 @class CMTextAttributes;
@@ -45,3 +47,5 @@
 - (NSAttributedString *)render;
 
 @end
+
+NS_ASSUME_NONNULL_END

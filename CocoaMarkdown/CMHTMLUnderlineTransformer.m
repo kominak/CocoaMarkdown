@@ -11,7 +11,7 @@
 
 @implementation CMHTMLUnderlineTransformer {
     CMUnderlineStyle _style;
-    CMColor *_color;
+    CMColor * _Nullable _color;
 }
 
 - (instancetype)init

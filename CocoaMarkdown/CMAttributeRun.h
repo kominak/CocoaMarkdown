@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 Indragie Karunaratne. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "CMPlatformDefines.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface CMAttributeRun : NSObject
 @property (nonatomic, readonly) NSDictionary *attributes;
@@ -24,3 +26,5 @@
 CMAttributeRun * CMDefaultAttributeRun(NSDictionary *attributes);
 CMAttributeRun * CMTraitAttributeRun(NSDictionary *attributes, CMFontSymbolicTraits traits);
 CMAttributeRun * CMOrderedListAttributeRun(NSDictionary *attributes, NSInteger startingNumber);
+
+NS_ASSUME_NONNULL_END

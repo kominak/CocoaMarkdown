@@ -8,6 +8,8 @@
 
 #import "CMDocument.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class CMTextAttributes;
 
 @interface CMDocument (AttributedStringAdditions)
@@ -23,3 +25,5 @@
 - (NSAttributedString *)attributedStringWithAttributes:(CMTextAttributes *)attributes;
 
 @end
+
+NS_ASSUME_NONNULL_END

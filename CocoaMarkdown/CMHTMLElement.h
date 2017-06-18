@@ -6,7 +6,9 @@
 //  Copyright (c) 2015 Indragie Karunaratne. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @protocol CMHTMLElementTransformer;
 
@@ -18,3 +20,5 @@
 - (instancetype)initWithTransformer:(id<CMHTMLElementTransformer>)transformer;
 
 @end
+
+NS_ASSUME_NONNULL_END
