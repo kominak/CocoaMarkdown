@@ -8,6 +8,8 @@
 
 #import "CMDocument.h"
 
+@class CMAttributedStringRenderResult;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class CMTextAttributes;
@@ -22,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Attributed string containing the formatted contents of the receiver.
  */
-- (NSAttributedString *)attributedStringWithAttributes:(CMTextAttributes *)attributes;
+- (CMAttributedStringRenderResult *)attributedStringWithAttributes:(CMTextAttributes *)attributes;
 
 @end
 

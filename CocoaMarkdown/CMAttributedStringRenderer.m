@@ -7,6 +7,7 @@
 //
 
 #import "CMAttributedStringRenderer.h"
+#import "CMAttributedStringRenderResult.h"
 #import "CMAttributeRun.h"
 #import "CMCascadingAttributeStack.h"
 #import "CMStack.h"
@@ -20,6 +21,7 @@
 #import "Ono.h"
 
 @interface CMAttributedStringRenderer () <CMParserDelegate>
+@property (nonatomic, readonly) BOOL isInBlockQuote;
 @end
 
 @implementation CMAttributedStringRenderer {
@@ -30,6 +32,9 @@
     NSMutableDictionary *_tagNameToTransformerMapping;
     NSMutableAttributedString *_buffer;
     NSAttributedString *_attributedString;
+    NSMutableArray<NSValue *> *_blockQuoteRanges;
+    NSUInteger _blockQuoteStartIndex;
+    BOOL _endedQuoteBlock;
 }
 
 - (instancetype)initWithDocument:(CMDocument *)document attributes:(CMTextAttributes *)attributes
@@ -48,12 +53,14 @@
     _tagNameToTransformerMapping[[transformer.class tagName]] = transformer;
 }
 
-- (NSAttributedString *)render
+- (CMAttributedStringRenderResult *)render
 {
     if (_attributedString == nil) {
         _attributeStack = [[CMCascadingAttributeStack alloc] init];
         _HTMLStack = [[CMStack alloc] init];
         _buffer = [[NSMutableAttributedString alloc] init];
+        _blockQuoteRanges = [NSMutableArray array];
+        _blockQuoteStartIndex = NSNotFound;
         
         CMParser *parser = [[CMParser alloc] initWithDocument:_document delegate:self];
         [parser parse];
@@ -64,7 +71,7 @@
         _buffer = nil;
     }
     
-    return _attributedString;
+    return [[CMAttributedStringRenderResult alloc] initWithResult:_attributedString blockQuoteRanges:_blockQuoteRanges];
 }
 
 #pragma mark - CMParserDelegate
@@ -102,18 +109,21 @@
 
 - (void)parserDidStartParagraph:(CMParser *)parser
 {
-    if (![self nodeIsInTightMode:parser.currentNode]) {
-        NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
-        paragraphStyle.paragraphSpacingBefore = 12;
+    if (![self nodeIsInTightMode:parser.currentNode] && !self.isInBlockQuote) {
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.paragraphSpacingBefore = _endedQuoteBlock ? 4 : 12;
         
         [_attributeStack push:CMDefaultAttributeRun(@{NSParagraphStyleAttributeName: paragraphStyle})];
     }
+    _endedQuoteBlock = NO;
 }
 
 - (void)parserDidEndParagraph:(CMParser *)parser
 {
     if (![self nodeIsInTightMode:parser.currentNode]) {
-        [_attributeStack pop];
+        if (!self.isInBlockQuote) {
+            [_attributeStack pop];
+        }
         [self appendString:@"\n"];
     }
 }
@@ -219,11 +229,16 @@
 
 - (void)parserDidStartBlockQuote:(CMParser *)parser
 {
+    _blockQuoteStartIndex = _buffer.length;
     [_attributeStack push:CMDefaultAttributeRun(_attributes.blockQuoteAttributes)];
 }
 
 - (void)parserDidEndBlockQuote:(CMParser *)parser
 {
+    NSRange range = NSMakeRange(_blockQuoteStartIndex, _buffer.length - _blockQuoteStartIndex);
+    [_blockQuoteRanges addObject:[NSValue valueWithRange:range]];
+    _blockQuoteStartIndex = NSNotFound;
+    _endedQuoteBlock = YES;
     [_attributeStack pop];
 }
 
@@ -282,6 +297,11 @@
 }
 
 #pragma mark - Private
+
+- (BOOL)isInBlockQuote
+{
+    return _blockQuoteStartIndex != NSNotFound;
+}
 
 - (NSDictionary *)listAttributesForNode:(CMNode *)node
 {

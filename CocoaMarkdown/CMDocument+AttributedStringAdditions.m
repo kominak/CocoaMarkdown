@@ -11,7 +11,7 @@
 
 @implementation CMDocument (AttributedStringAdditions)
 
-- (NSAttributedString *)attributedStringWithAttributes:(CMTextAttributes *)attributes
+- (CMAttributedStringRenderResult *)attributedStringWithAttributes:(CMTextAttributes *)attributes
 {
     CMAttributedStringRenderer *renderer = [[CMAttributedStringRenderer alloc] initWithDocument:self attributes:attributes];
     return [renderer render];

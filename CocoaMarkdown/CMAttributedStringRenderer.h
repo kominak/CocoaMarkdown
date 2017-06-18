@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class CMDocument;
 @class CMTextAttributes;
+@class CMAttributedStringRenderResult;
 @protocol CMHTMLElementTransformer;
 /**
  *  Renders an attributed string from a Markdown document
@@ -44,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return An attributed string containing the contents of the Markdown document,
  *  styled using the attributes set on the receiver.
  */
-- (NSAttributedString *)render;
+- (CMAttributedStringRenderResult *)render;
 
 @end
 
