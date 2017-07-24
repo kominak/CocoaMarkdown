@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NSDictionary<NSAttributedStringKey, id> * Attributes;
+
 /**
  *  Container for sets of text attributes used to style 
  *  attributed strings.
@@ -28,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return The attributes for the specified header level.
  */
-- (NSDictionary<NSString *, id> *)attributesForHeaderLevel:(NSInteger)level;
+- (Attributes)attributesForHeaderLevel:(NSInteger)level;
 
 /**
  *  Attributes used to style text.
@@ -36,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  On iOS, defaults to using the Dynamic Type font with style `UIFontTextStyleBody`
  *  On OS X, defaults to using the user font with size 12pt.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *textAttributes;
+@property (nonatomic) Attributes textAttributes;
 
 /**
  *  Attributes used to style level 1 headers.
@@ -44,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  On iOS, defaults to using the Dynamic Type font with style `UIFontTextStyleHeadline`
  *  On OS X, defaults to using the user font with size 24pt.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *h1Attributes;
+@property (nonatomic) Attributes h1Attributes;
 
 /**
  *  Attributes used to style level 2 headers.
@@ -52,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  On iOS, defaults to using the Dynamic Type font with style `UIFontTextStyleHeadline`
  *  On OS X, defaults to using the user font with size 18pt.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *h2Attributes;
+@property (nonatomic) Attributes h2Attributes;
 
 /**
  *  Attributes used to style level 3 headers.
@@ -60,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  On iOS, defaults to using the Dynamic Type font with style `UIFontTextStyleHeadline`
  *  On OS X, defaults to using the user font with size 14pt.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *h3Attributes;
+@property (nonatomic) Attributes h3Attributes;
 
 /**
  *  Attributes used to style level 4 headers.
@@ -68,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  On iOS, defaults to using the Dynamic Type font with style `UIFontTextStyleSubheadline`
  *  On OS X, defaults to using the user font with size 12pt.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *h4Attributes;
+@property (nonatomic) Attributes h4Attributes;
 
 /**
  *  Attributes used to style level 5 headers.
@@ -76,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  On iOS, defaults to using the Dynamic Type font with style `UIFontTextStyleSubheadline`
  *  On OS X, defaults to using the user font with size 10pt.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *h5Attributes;
+@property (nonatomic) Attributes h5Attributes;
 
 /**
  *  Attributes used to style level 6 headers.
@@ -84,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  On iOS, defaults to using the Dynamic Type font with style `UIFontTextStyleSubheadline`
  *  On OS X, defaults to using the user font with size 8pt.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *h6Attributes;
+@property (nonatomic) Attributes h6Attributes;
 
 /**
  *  Attributes used to style emphasized text.
@@ -92,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  If not set, the renderer will attempt to infer the emphasized font from the
  *  regular text font.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *emphasisAttributes;
+@property (nonatomic) Attributes emphasisAttributes;
 
 /**
  *  Attributes used to style strong text.
@@ -100,14 +102,14 @@ NS_ASSUME_NONNULL_BEGIN
  *  If not set, the renderer will attempt to infer the strong font from the
  *  regular text font.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *strongAttributes;
+@property (nonatomic) Attributes strongAttributes;
 
 /**
  *  Attributes used to style linked text.
  *
  *  Defaults to using a blue foreground color and a single line underline style.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *linkAttributes;
+@property (nonatomic) Attributes linkAttributes;
 
 /**
  *  Attributes used to style code blocks.
@@ -115,7 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  On iOS, defaults to the Menlo font when available, or Courier as a fallback.
  *  On OS X, defaults to the user monospaced font.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *codeBlockAttributes;
+@property (nonatomic) Attributes codeBlockAttributes;
 
 /**
  *  Attributes used to style inline code.
@@ -123,14 +125,14 @@ NS_ASSUME_NONNULL_BEGIN
  *  On iOS, defaults to the Menlo font when available, or Courier as a fallback.
  *  On OS X, defaults to the user monospaced font.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *inlineCodeAttributes;
+@property (nonatomic) Attributes inlineCodeAttributes;
 
 /**
  *  Attributes used to style block quotes.
  *
  *  Defaults to using a paragraph style with a head indent of 30px.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *blockQuoteAttributes;
+@property (nonatomic) Attributes blockQuoteAttributes;
 
 /**
  *  Attributes used to style ordered lists.
@@ -140,7 +142,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  Defaults to using a paragraph style with a head indent of 30px.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *orderedListAttributes;
+@property (nonatomic) Attributes orderedListAttributes;
 
 /**
  *  Attributes used to style unordered lists.
@@ -150,7 +152,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  Defaults to using a paragraph style with a head indent of 30px.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *unorderedListAttributes;
+@property (nonatomic) Attributes unorderedListAttributes;
 
 /**
  *  Attributes used to style ordered sublists.
@@ -160,7 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  Defaults to using a paragraph style with a head indent of 30px.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *orderedSublistAttributes;
+@property (nonatomic) Attributes orderedSublistAttributes;
 
 /**
  *  Attributes used to style unordered sublists.
@@ -170,21 +172,21 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  Defaults to using a paragraph style with a head indent of 30px.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *unorderedSublistAttributes;
+@property (nonatomic) Attributes unorderedSublistAttributes;
 
 /**
  *  Attributes used to style ordered list items.
  *
  *  These attribtues do _not_ apply to the numbers.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *orderedListItemAttributes;
+@property (nonatomic) Attributes orderedListItemAttributes;
 
 /**
  *  Attributes used to style unordered list items.
  *
  *  These attribtues do _not_ apply to the bullets.
  */
-@property (nonatomic) NSDictionary<NSString *, id> *unorderedListItemAttributes;
+@property (nonatomic) Attributes unorderedListItemAttributes;
 
 @end
 

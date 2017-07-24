@@ -21,3 +21,8 @@
 #ifndef HAVE_VA_COPY
   #define va_copy(dest, src) ((dest) = (src))
 #endif
+
+#ifndef CMARK_INLINE
+#define CMARK_INLINE inline
+#endif
+
