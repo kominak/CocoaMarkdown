@@ -9,4 +9,4 @@
 	url = https://github.com/mattt/Ono.git
 [submodule "External/cmark"]
 	path = External/cmark
-	url = https://github.com/jgm/cmark.git
+	url = https://github.com/github/cmark.git
