@@ -21,7 +21,7 @@ Efficient NSAttributedString creation for easy rendering on iOS and OS X. Most e
   s.osx.framework = 'Cocoa'
   s.requires_arc  = true
 
-  s.dependency 'cmark', '~> 0.21.0'
+  s.dependency 'github/cmark'
   s.dependency 'Ono', '~> 1.1.3'
 
 end
